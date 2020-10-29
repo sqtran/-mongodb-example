@@ -1,1 +1,1 @@
-# -mongodb-example
+# mongodb-example
