@@ -16,3 +16,20 @@ docker exec -it mangodb bash
 ```
 
 Once inside the container, type `mongo` to open an interactive session.  Now use your normal MongoDB commands.
+
+## Sample Queries
+
+```bash
+# Get all from the person database
+db.person.find({})
+
+# select all
+db.contact.aggregate( [{$lookup: {from:"address", localField:"address_id", foreignField:"_id", as: "address"}}])
+
+# limit 1
+db.contact.aggregate( [{$lookup: {from:"address", localField:"address_id", foreignField:"_id", as: "address"}}, {$limit: 1}])
+
+# Find exactly 1
+db.contact.aggregate( [{$match: {firstName: "Milhouse"}}, {$limit: 1}, {$lookup: {from:"address", localField:"address_id", foreignField:"_id", as: "address"}} ])
+```
+
