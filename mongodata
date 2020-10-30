@@ -1,0 +1,12 @@
+db.person.insert([
+  {firstName:"Bart", lastName:"Simpson", age:10, address:"742 Evergreen Terrace"},
+  {firstName:"Homer", lastName:"Simpson", age:39, address:"742 Evergreen Terrace"},
+  {firstName:"Lisa", lastName:"Simpson", age:8, address:"742 Evergreen Terrace"},
+  {firstName:"Ned", lastName:"Flanders", age:60, address:"744 Evergreen Terrace"},
+  {firstName:"Milhouse", lastName:"Van Houten", age:10, address:"316 Pikeland Ave"},
+  {firstName:"Kirk", lastName:"Van Houten", age:45, address:"316 Pikeland Ave"},
+  {firstName:"Luann", lastName:"Van Houten", age:44, address:"316 Pikeland Ave"},
+  {firstName:"Ralph", lastName:"Wiggum", age:8, address:"732 Evergreen Terrace"},
+  {firstName:"Clancy", lastName:"Wiggum", age:43, address:"732 Evergreen Terrace"},
+  {firstName:"Sarah", lastName:"Wiggum", age:43, address:"732 Evergreen Terrace"}
+])
