@@ -82,9 +82,9 @@ public class App0 {
 
 		AggregateIterable<Contact> contactAggregate = contactCollection.aggregate(
 			Arrays.asList(
+				limit(1),
 				lookup("address", "address_id", "_id", "address"),
-				unwind("$address"),
-				limit(1)
+				unwind("$address")
 			)
 		);
 
@@ -92,10 +92,10 @@ public class App0 {
 		
 		contactAggregate = contactCollection.aggregate(
 			Arrays.asList(
-				lookup("address", "address_id", "_id", "address"),
-				unwind("$address"), 
 				match(eq("firstName", "Milhouse")),
-				limit(1)
+				limit(1),
+				lookup("address", "address_id", "_id", "address"),
+				unwind("$address")
 			)
 		);
 
