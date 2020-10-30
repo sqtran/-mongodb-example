@@ -8,6 +8,9 @@ import java.util.Arrays;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Aggregates.lookup;
 import static com.mongodb.client.model.Aggregates.unwind;
+import static com.mongodb.client.model.Aggregates.limit;
+import static com.mongodb.client.model.Aggregates.match;
+
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
@@ -18,7 +21,6 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Aggregates;
 
 public class App0 {
 
@@ -78,18 +80,36 @@ public class App0 {
 
 		MongoCollection<Contact> contactCollection = db.getCollection("contact", Contact.class);
 
-		AggregateIterable<Contact> characterExtension = contactCollection.aggregate(
+		AggregateIterable<Contact> contactAggregate = contactCollection.aggregate(
+			Arrays.asList(
+				lookup("address", "address_id", "_id", "address"),
+				unwind("$address"),
+				limit(1)
+			)
+		);
+
+		System.out.println("\nFirst contact: " + contactAggregate.iterator().tryNext() + "\n");
+		
+		contactAggregate = contactCollection.aggregate(
+			Arrays.asList(
+				lookup("address", "address_id", "_id", "address"),
+				unwind("$address"), 
+				match(eq("firstName", "Milhouse")),
+				limit(1)
+			)
+		);
+
+		System.out.println("\nContact by name: " + contactAggregate.iterator().tryNext() + "\n");
+
+		contactAggregate = contactCollection.aggregate(
 			Arrays.asList(
 				lookup("address", "address_id", "_id", "address"),
 				unwind("$address")
 			)
 		);
 
-		System.out.println("First characterExtension: " + characterExtension.toString() + "\n");
-
-		MongoCursor<Contact> cursor2 = 	characterExtension.iterator();
-
-		while (cursor2.hasNext()) {
+		MongoCursor<Contact> cursor2 = contactAggregate.iterator();
+		while(cursor2.hasNext()) {
 			System.out.println(cursor2.next());
 		}
 	}
