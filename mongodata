@@ -10,3 +10,25 @@ db.person.insert([
   {firstName:"Clancy", lastName:"Wiggum", age:43, address:"732 Evergreen Terrace"},
   {firstName:"Sarah", lastName:"Wiggum", age:43, address:"732 Evergreen Terrace"}
 ])
+
+db.contact.insert([
+
+  {firstName:"Bart", lastName:"Simpson", age:10, phoneNumber: "555-555-0001", address_id: "simpsons"},
+  {firstName:"Homer", lastName:"Simpson", age:39, phoneNumber: "555-555-0001", address_id: "simpsons"},
+  {firstName:"Lisa", lastName:"Simpson", age:8, phoneNumber: "555-555-0001", address_id: "simpsons"},
+  {firstName:"Ned", lastName:"Flanders", age:60, phoneNumber: "555-555-0002", address_id: "flanders"},
+  {firstName:"Milhouse", lastName:"Van Houten", phoneNumber: "555-555-0003", age:10, address_id: "vanhoutens"},
+  {firstName:"Kirk", lastName:"Van Houten", age:45, phoneNumber: "555-555-0003", address_id: "vanhoutens"},
+  {firstName:"Luann", lastName:"Van Houten", age:44, phoneNumber: "555-555-0003", address_id: "vanhoutens"},
+  {firstName:"Ralph", lastName:"Wiggum", age:8, phoneNumber: "555-555-0004",  address_id: "wiggums"},
+  {firstName:"Clancy", lastName:"Wiggum", age:43, phoneNumber: "555-555-0004", address_id: "wiggums"},
+  {firstName:"Sarah", lastName:"Wiggum", age:43, phoneNumber: "555-555-0004", address_id: "wiggums"}
+
+])
+
+db.address.insert([
+  { _id: "simpsons", street: "742 Evergreen Terrace", city: "Springfield"},
+  { _id: "flanders", street: "744 Evergreen Terrace", city: "Springfield"},
+  { _id: "vanhoutens", street: "316 Pikeland Ave", city: "Springfield"},
+  { _id: "wiggums", street: "732 Evergreen Terrace", city: "Springfield"}
+])

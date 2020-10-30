@@ -1,7 +1,12 @@
 package steve;
 
+import org.bson.codecs.pojo.annotations.BsonProperty;
+
 public class Address {
 
+	@BsonProperty("_id") 
+	private String id;
+	
 	private String street;
 	private String city;
 
@@ -23,7 +28,7 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [city=" + city + ", street=" + street + "]";
+		return "Address [city=" + city + ", id=" + id + ", street=" + street + "]";
 	}
 
 	@Override
@@ -31,6 +36,7 @@ public class Address {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
 		return result;
 	}
@@ -49,11 +55,24 @@ public class Address {
 				return false;
 		} else if (!city.equals(other.city))
 			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (street == null) {
 			if (other.street != null)
 				return false;
 		} else if (!street.equals(other.street))
 			return false;
 		return true;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }
