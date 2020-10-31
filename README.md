@@ -33,3 +33,11 @@ db.contact.aggregate( [{$lookup: {from:"address", localField:"address_id", forei
 db.contact.aggregate( [{$match: {firstName: "Milhouse"}}, {$limit: 1}, {$lookup: {from:"address", localField:"address_id", foreignField:"_id", as: "address"}} ])
 ```
 
+## Compile and Run
+
+This demo builds an uber jar so you can just run it after packaging it up.
+
+```bash
+mvn clean package
+java -jar target/demo-0.1.jar
+```

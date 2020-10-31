@@ -9,14 +9,13 @@
 	<version>0.1</version>
 	<packaging>jar</packaging>
 
-	<name>MangoDB Example</name>
+	<name>MongoDB Example</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>steve.App</start-class>
-		<java.version>11</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
-
 
 	<dependencies>
 		<dependency>
@@ -30,9 +29,40 @@
 			<artifactId>mongodb-driver</artifactId>
 			<version>3.12.7</version>
 		</dependency> -->
-
-
-
 	</dependencies>
+
+	<build>
+		<plugins>
+		  <plugin>
+			<!-- Build an executable JAR -->
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<version>3.2.0</version>
+			<configuration>
+			  <archive>
+				<manifest>
+				  <mainClass>steve.App0</mainClass>
+				</manifest>
+			  </archive>
+			</configuration>
+		  </plugin>
+
+		  <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-shade-plugin</artifactId>
+			<version>3.2.4</version>
+			<configuration>
+			</configuration>
+			<executions>
+			  <execution>
+				<phase>package</phase>
+				<goals>
+				  <goal>shade</goal>
+				</goals>
+			  </execution>
+			</executions>
+		  </plugin>
+		</plugins>
+	</build>
 
 </project>
